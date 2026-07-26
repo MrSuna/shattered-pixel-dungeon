@@ -691,6 +691,9 @@ public class Hero extends Char {
 			dmg = Math.round(dmg * 1.025f + (.025f*pointsInTalent(Talent.WEAPON_RECHARGING)));
 		}
 
+		//E.D.: 王之威压 + 掠夺物加成
+		dmg = com.shatteredpixel.shatteredpixeldungeon.items.artifacts.RoyalTreasure.empowerDamage(this, dmg);
+
 		if (dmg < 0) dmg = 0;
 		return dmg;
 	}
@@ -1482,6 +1485,9 @@ public class Hero extends Char {
 
 		damage = Talent.onAttackProc( this, enemy, damage );
 
+		//E.D.: 击杀掠夺
+		com.shatteredpixel.shatteredpixeldungeon.items.artifacts.RoyalTreasure.tryPlunder(this, enemy, damage);
+
 		if (wep != null) {
 			damage = wep.proc( this, enemy, damage );
 		} else {
@@ -2126,6 +2132,9 @@ public class Hero extends Char {
 
 	@Override
 	public void die( Object cause ) {
+
+		//E.D.: 一无所有——死亡清空宝藏
+		com.shatteredpixel.shatteredpixeldungeon.items.artifacts.RoyalTreasure.loseEverything(this);
 		
 		curAction = null;
 

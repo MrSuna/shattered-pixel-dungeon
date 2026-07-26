@@ -52,6 +52,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.Waterskin;
 import com.shatteredpixel.shatteredpixeldungeon.items.armor.ClothArmor;
 import com.shatteredpixel.shatteredpixeldungeon.items.artifacts.CloakOfShadows;
 import com.shatteredpixel.shatteredpixeldungeon.items.artifacts.HolyTome;
+import com.shatteredpixel.shatteredpixeldungeon.items.artifacts.RoyalTreasure;
 import com.shatteredpixel.shatteredpixeldungeon.items.bags.VelvetPouch;
 import com.shatteredpixel.shatteredpixeldungeon.items.food.Food;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfHealing;
@@ -89,7 +90,8 @@ public enum HeroClass {
 	ROGUE( HeroSubClass.ASSASSIN, HeroSubClass.FREERUNNER ),
 	HUNTRESS( HeroSubClass.SNIPER, HeroSubClass.WARDEN ),
 	DUELIST( HeroSubClass.CHAMPION, HeroSubClass.MONK ),
-	CLERIC( HeroSubClass.PRIEST, HeroSubClass.PALADIN );
+	CLERIC( HeroSubClass.PRIEST, HeroSubClass.PALADIN ),
+	ED( HeroSubClass.BERSERKER, HeroSubClass.GLADIATOR );
 
 	private HeroSubClass[] subClasses;
 
@@ -140,6 +142,10 @@ public enum HeroClass {
 			case CLERIC:
 				initCleric( hero );
 				break;
+
+			case ED:
+				initED( hero );
+				break;
 		}
 
 		if (SPDSettings.quickslotWaterskin()) {
@@ -156,6 +162,7 @@ public enum HeroClass {
 	public Badges.Badge masteryBadge() {
 		switch (this) {
 			case WARRIOR:
+			case ED:
 				return Badges.Badge.MASTERY_WARRIOR;
 			case MAGE:
 				return Badges.Badge.MASTERY_MAGE;
@@ -260,6 +267,19 @@ public enum HeroClass {
 		new ScrollOfRemoveCurse().identify();
 	}
 
+	private static void initED( Hero hero ) {
+		(hero.belongings.weapon = new WornShortsword()).identify();
+
+		RoyalTreasure treasure = new RoyalTreasure();
+		(hero.belongings.artifact = treasure).identify();
+		hero.belongings.artifact.activate( hero );
+
+		Dungeon.quickslot.setSlot(0, treasure);
+
+		new PotionOfHealing().identify();
+		new ScrollOfRage().identify();
+	}
+
 	public String title() {
 		return Messages.get(HeroClass.class, name());
 	}
@@ -278,7 +298,7 @@ public enum HeroClass {
 
 	public ArmorAbility[] armorAbilities(){
 		switch (this) {
-			case WARRIOR: default:
+			case WARRIOR: case ED: default:
 				return new ArmorAbility[]{new HeroicLeap(), new Shockwave(), new Endure()};
 			case MAGE:
 				return new ArmorAbility[]{new ElementalBlast(), new WildMagic(), new WarpBeacon()};
@@ -297,6 +317,8 @@ public enum HeroClass {
 		switch (this) {
 			case WARRIOR: default:
 				return Assets.Sprites.WARRIOR;
+			case ED:
+				return Assets.Sprites.ED;
 			case MAGE:
 				return Assets.Sprites.MAGE;
 			case ROGUE:
@@ -312,7 +334,7 @@ public enum HeroClass {
 
 	public String splashArt(){
 		switch (this) {
-			case WARRIOR: default:
+			case WARRIOR: case ED: default:
 				return Assets.Splashes.WARRIOR;
 			case MAGE:
 				return Assets.Splashes.MAGE;
@@ -332,7 +354,7 @@ public enum HeroClass {
 		if (DeviceCompat.isDebug()) return true;
 
 		switch (this){
-			case WARRIOR: default:
+			case WARRIOR: case ED: default:
 				return true;
 			case MAGE:
 				return Badges.isUnlocked(Badges.Badge.UNLOCK_MAGE);
