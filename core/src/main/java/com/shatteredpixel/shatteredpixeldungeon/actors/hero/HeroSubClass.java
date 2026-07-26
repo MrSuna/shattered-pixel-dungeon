@@ -48,7 +48,11 @@ public enum HeroSubClass {
 	MONK(HeroIcon.MONK),
 
 	PRIEST(HeroIcon.PRIEST),
-	PALADIN(HeroIcon.PALADIN);
+	PALADIN(HeroIcon.PALADIN),
+
+	//E.D. (永远的像素地牢 mod)
+	BROKEN_CROWN(HeroIcon.BERSERKER),
+	USURPER(HeroIcon.GLADIATOR);
 
 	int icon;
 

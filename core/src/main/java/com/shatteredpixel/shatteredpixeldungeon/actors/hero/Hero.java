@@ -1547,6 +1547,9 @@ public class Hero extends Char {
 			Berserk berserk = Buff.affect(this, Berserk.class);
 			berserk.damage(damage);
 		}
+
+		//E.D.: 荆棘王冠反伤
+		com.shatteredpixel.shatteredpixeldungeon.items.artifacts.RoyalTreasure.onDefenseProc(this, enemy, damage);
 		
 		if (belongings.armor() != null) {
 			damage = belongings.armor().proc( enemy, this, damage );

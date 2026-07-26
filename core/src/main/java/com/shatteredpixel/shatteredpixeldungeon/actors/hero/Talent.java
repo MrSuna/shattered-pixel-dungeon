@@ -200,7 +200,12 @@ public enum Talent {
 	//universal T4
 	HEROIC_ENERGY(26, 4), //See icon() and title() for special logic for this one
 	//Ratmogrify T4
-	RATSISTANCE(215, 4), RATLOMACY(216, 4), RATFORCEMENTS(217, 4);
+	RATSISTANCE(215, 4), RATLOMACY(216, 4), RATFORCEMENTS(217, 4),
+
+	//E.D. Broken Crown T3 (永远的像素地牢 mod)
+	CROWN_OF_THORNS(11, 3), THRONE_ECHO(12, 3), PAINBORN(13, 3),
+	//E.D. Usurper T3
+	GREEDY_VAULT(14, 3), TYRANTS_TOLL(15, 3), BLOOD_TRIBUTE(16, 3);
 
 	public static class ImprovisedProjectileCooldown extends FlavourBuff{
 		public int icon() { return BuffIndicator.TIME; }
@@ -991,6 +996,10 @@ public enum Talent {
 			case CLERIC:
 				Collections.addAll(tierTalents, SATIATED_SPELLS, HOLY_INTUITION, SEARING_LIGHT, SHIELD_OF_LIGHT);
 				break;
+			case ED:
+				//E.D.：苦痛主题 — 低血回复/受击反怒/护盾/低血屏障
+				Collections.addAll(tierTalents, HEARTY_MEAL, PROVOKED_ANGER, IRON_WILL, AGGRESSIVE_BARRIER);
+				break;
 		}
 		for (Talent talent : tierTalents){
 			if (replacements.containsKey(talent)){
@@ -1020,6 +1029,10 @@ public enum Talent {
 			case CLERIC:
 				Collections.addAll(tierTalents, ENLIGHTENING_MEAL, RECALL_INSCRIPTION, SUNRAY, DIVINE_SENSE, BLESS);
 				break;
+			case ED:
+				//E.D.：吃饭强化/药水屏障/连杀加速/即兴投掷/铁胃
+				Collections.addAll(tierTalents, FOCUSED_MEAL, LIQUID_WILLPOWER, LETHAL_MOMENTUM, IMPROVISED_PROJECTILES, IRON_STOMACH);
+				break;
 		}
 		for (Talent talent : tierTalents){
 			if (replacements.containsKey(talent)){
@@ -1048,6 +1061,10 @@ public enum Talent {
 				break;
 			case CLERIC:
 				Collections.addAll(tierTalents, CLEANSE, LIGHT_READING);
+				break;
+			case ED:
+				//E.D.：壮士之力/致命追击
+				Collections.addAll(tierTalents, STRONGMAN, DEADLY_FOLLOWUP);
 				break;
 		}
 		for (Talent talent : tierTalents){
@@ -1112,6 +1129,12 @@ public enum Talent {
 				break;
 			case PALADIN:
 				Collections.addAll(tierTalents, LAY_ON_HANDS, AURA_OF_PROTECTION, WALL_OF_LIGHT);
+				break;
+			case BROKEN_CROWN:
+				Collections.addAll(tierTalents, CROWN_OF_THORNS, THRONE_ECHO, PAINBORN);
+				break;
+			case USURPER:
+				Collections.addAll(tierTalents, GREEDY_VAULT, TYRANTS_TOLL, BLOOD_TRIBUTE);
 				break;
 		}
 		for (Talent talent : tierTalents){
