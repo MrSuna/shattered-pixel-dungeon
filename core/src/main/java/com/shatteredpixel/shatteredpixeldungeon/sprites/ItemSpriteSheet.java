@@ -460,6 +460,7 @@ public class ItemSpriteSheet {
 	public static final int ARTIFACT_ROSE3      = ARTIFACTS+22;
 	public static final int ARTIFACT_TOME       = ARTIFACTS+23;
 	public static final int ARTIFACT_KEY        = ARTIFACTS+24;
+	public static final int ARTIFACT_ROYAL_TREASURE = ARTIFACTS+25;
 	static{
 		assignItemRect(ARTIFACT_CLOAK,      9,  15);
 		assignItemRect(ARTIFACT_ARMBAND,    16, 13);
@@ -486,6 +487,7 @@ public class ItemSpriteSheet {
 		assignItemRect(ARTIFACT_ROSE3,      14, 14);
 		assignItemRect(ARTIFACT_TOME,       14, 16);
 		assignItemRect(ARTIFACT_KEY,        8,  16);
+		assignItemRect(ARTIFACT_ROYAL_TREASURE, 16, 16);
 	}
 
 	private static final int TRINKETS        =                               xy(1, 18);  //32 slots

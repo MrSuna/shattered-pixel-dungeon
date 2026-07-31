@@ -19,8 +19,7 @@ import com.shatteredpixel.shatteredpixeldungeon.utils.GLog;
 public class RoyalTreasure extends Artifact {
 
 	{
-		// 占位图标：先复用荆棘斗篷的图标；做好自己的 16x16 图标后替换
-		image = ItemSpriteSheet.ARTIFACT_CAPE;
+		image = ItemSpriteSheet.ARTIFACT_ROYAL_TREASURE;
 
 		levelCap = 10;
 

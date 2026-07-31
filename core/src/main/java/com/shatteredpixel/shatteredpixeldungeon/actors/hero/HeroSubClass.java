@@ -51,8 +51,8 @@ public enum HeroSubClass {
 	PALADIN(HeroIcon.PALADIN),
 
 	//E.D. (永恒的像素地牢 mod)
-	BROKEN_CROWN(HeroIcon.BERSERKER),
-	USURPER(HeroIcon.GLADIATOR);
+	BROKEN_CROWN(HeroIcon.BROKEN_CROWN),
+	USURPER(HeroIcon.USURPER);
 
 	int icon;
 
