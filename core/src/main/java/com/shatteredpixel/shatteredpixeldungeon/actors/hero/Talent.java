@@ -203,10 +203,10 @@ public enum Talent {
 	RATSISTANCE(215, 4), RATLOMACY(216, 4), RATFORCEMENTS(217, 4),
 
 	//E.D. Broken Crown T3 (永恒的像素地牢 mod)
-	// Keep the mod icons in unused atlas slots instead of reusing the base game's icons.
-	CROWN_OF_THORNS(218, 3), THRONE_ECHO(219, 3), PAINBORN(220, 3),
+	// 218 is reserved by Ratmogrify; E.D. uses unused atlas slots 224 onward.
+	CROWN_OF_THORNS(224, 3), THRONE_ECHO(225, 3), PAINBORN(226, 3),
 	//E.D. Usurper T3
-	GREEDY_VAULT(221, 3), TYRANTS_TOLL(222, 3), BLOOD_TRIBUTE(223, 3);
+	GREEDY_VAULT(227, 3), TYRANTS_TOLL(228, 3), BLOOD_TRIBUTE(229, 3);
 
 	public static class ImprovisedProjectileCooldown extends FlavourBuff{
 		public int icon() { return BuffIndicator.TIME; }
@@ -470,8 +470,44 @@ public enum Talent {
 				case CLERIC:
 					return 186;
 			}
+		} else if (usesEDPresentation()) {
+			switch (this){
+				case HEARTY_MEAL:            return 230;
+				case PROVOKED_ANGER:         return 231;
+				case IRON_WILL:              return 232;
+				case AGGRESSIVE_BARRIER:     return 233;
+				case FOCUSED_MEAL:           return 234;
+				case LIQUID_WILLPOWER:       return 235;
+				case LETHAL_MOMENTUM:        return 236;
+				case IMPROVISED_PROJECTILES: return 237;
+				case IRON_STOMACH:           return 238;
+				case STRONGMAN:              return 239;
+				case DEADLY_FOLLOWUP:        return 240;
+			}
+			return icon;
 		} else {
 			return icon;
+		}
+	}
+
+	private boolean usesEDPresentation(){
+		HeroClass cls = Dungeon.hero != null ? Dungeon.hero.heroClass : GamesInProgress.selectedClass;
+		if (cls != HeroClass.ED) return false;
+		switch (this){
+			case HEARTY_MEAL:
+			case PROVOKED_ANGER:
+			case IRON_WILL:
+			case AGGRESSIVE_BARRIER:
+			case FOCUSED_MEAL:
+			case LIQUID_WILLPOWER:
+			case LETHAL_MOMENTUM:
+			case IMPROVISED_PROJECTILES:
+			case IRON_STOMACH:
+			case STRONGMAN:
+			case DEADLY_FOLLOWUP:
+				return true;
+			default:
+				return false;
 		}
 	}
 
@@ -483,6 +519,9 @@ public enum Talent {
 		if (this == HEROIC_ENERGY && Ratmogrify.useRatroicEnergy){
 			return Messages.get(this, name() + ".rat_title");
 		}
+		if (usesEDPresentation()){
+			return Messages.get(this, name() + ".ed_title");
+		}
 		return Messages.get(this, name() + ".title");
 	}
 
@@ -491,6 +530,9 @@ public enum Talent {
 	}
 
 	public String desc(boolean metamorphed){
+		if (usesEDPresentation()){
+			return Messages.get(this, name() + ".ed_desc");
+		}
 		if (metamorphed){
 			String metaDesc = Messages.get(this, name() + ".meta_desc");
 			if (!metaDesc.equals(Messages.NO_TEXT_FOUND)){
