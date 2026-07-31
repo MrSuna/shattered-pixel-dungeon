@@ -203,9 +203,10 @@ public enum Talent {
 	RATSISTANCE(215, 4), RATLOMACY(216, 4), RATFORCEMENTS(217, 4),
 
 	//E.D. Broken Crown T3 (永恒的像素地牢 mod)
-	CROWN_OF_THORNS(11, 3), THRONE_ECHO(12, 3), PAINBORN(13, 3),
+	// Keep the mod icons in unused atlas slots instead of reusing the base game's icons.
+	CROWN_OF_THORNS(218, 3), THRONE_ECHO(219, 3), PAINBORN(220, 3),
 	//E.D. Usurper T3
-	GREEDY_VAULT(14, 3), TYRANTS_TOLL(15, 3), BLOOD_TRIBUTE(16, 3);
+	GREEDY_VAULT(221, 3), TYRANTS_TOLL(222, 3), BLOOD_TRIBUTE(223, 3);
 
 	public static class ImprovisedProjectileCooldown extends FlavourBuff{
 		public int icon() { return BuffIndicator.TIME; }
