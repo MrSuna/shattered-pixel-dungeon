@@ -1,5 +1,5 @@
 /*
- * 永远的像素地牢 — E.D. 专属神器「独一无二的王之宝藏」
+ * 永恒的像素地牢 — E.D. 专属神器「独一无二的王之宝藏」
  * 基于 Shattered Pixel Dungeon (GPL-3.0)，本文件同样以 GPL-3.0 发布。
  * 放置到: core/src/main/java/com/shatteredpixel/shatteredpixeldungeon/items/artifacts/RoyalTreasure.java
  */

@@ -1485,9 +1485,6 @@ public class Hero extends Char {
 
 		damage = Talent.onAttackProc( this, enemy, damage );
 
-		//E.D.: 击杀掠夺
-		com.shatteredpixel.shatteredpixeldungeon.items.artifacts.RoyalTreasure.tryPlunder(this, enemy, damage);
-
 		if (wep != null) {
 			damage = wep.proc( this, enemy, damage );
 		} else {
@@ -1506,6 +1503,9 @@ public class Hero extends Char {
 				}
 			}
 		}
+
+		//E.D.: resolve weapon effects before checking whether the attack is lethal.
+		com.shatteredpixel.shatteredpixeldungeon.items.artifacts.RoyalTreasure.tryPlunder(this, enemy, damage);
 		
 		switch (subClass) {
 		case SNIPER:
