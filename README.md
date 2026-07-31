@@ -1,6 +1,8 @@
 # 永恒的像素地牢
 
-这是基于 [Shattered Pixel Dungeon](https://github.com/00-Evan/shattered-pixel-dungeon) 源码制作的个人 Mod 版本，加入了 E.D. 职业、专属转职与「独一无二的王之宝藏」。原项目的 GPL-3.0 许可、版权声明和现有署名均应保留。
+这是基于 [Shattered Pixel Dungeon](https://github.com/00-Evan/shattered-pixel-dungeon) 源码制作的个人 Mod 版本，加入了 E.D. 职业、专属转职与「独一无二的王之宝藏」。
+
+Artifact download URL: https://github.com/MrSuna/shattered-pixel-dungeon/actions/runs/30637223061/artifacts/8795873082
 
 ## 构建
 
