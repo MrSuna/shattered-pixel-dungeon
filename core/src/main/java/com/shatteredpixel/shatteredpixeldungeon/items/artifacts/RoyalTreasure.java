@@ -80,9 +80,11 @@ public class RoyalTreasure extends Artifact {
 		if (treasure == null || !treasure.isEquipped(hero)) return;
 
 		treasure.chargeCap = treasure.capacity();
+		boolean stored = false;
 		if (treasure.charge < treasure.chargeCap){
 			treasure.charge++;
 			treasure.exp++;
+			stored = true;
 			GLog.p( Messages.get(RoyalTreasure.class, "plundered", treasure.charge, treasure.chargeCap) );
 			if (treasure.exp >= 5 && treasure.level() < treasure.levelCap){
 				treasure.exp = 0;
@@ -92,14 +94,14 @@ public class RoyalTreasure extends Artifact {
 			treasure.updateQuickslot();
 		}
 
-		// 痛觉觉醒（破碎王冠）：每次掠夺回复 1/2/3 生命
-		if (hero.hasTalent(Talent.PAINBORN) && hero.HP < hero.HT){
+		// Broken Crown turns a successfully stored plunder into sustain.
+		if (stored && hero.hasTalent(Talent.PAINBORN) && hero.HP < hero.HT){
 			int heal = hero.pointsInTalent(Talent.PAINBORN);
 			hero.HP = Math.min(hero.HP + heal, hero.HT);
 		}
 
-		// 僭主税（僭主）：每次击杀获得 2/4/6 护盾
-		if (hero.hasTalent(Talent.TYRANTS_TOLL)){
+		// Usurper only collects tax when the vault can actually accept the plunder.
+		if (stored && hero.hasTalent(Talent.TYRANTS_TOLL)){
 			Buff.affect(hero, Barrier.class).incShield(2*hero.pointsInTalent(Talent.TYRANTS_TOLL));
 		}
 	}

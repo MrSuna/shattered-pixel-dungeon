@@ -184,8 +184,10 @@ public class HeroSprite extends CharSprite {
 	
 	public static Image avatar( HeroClass cl, int armorTier ) {
 		if (cl == HeroClass.ED){
+			// Use the complete figure from the third direction row. The old
+			// x=56 crop included half of the adjacent figure.
 			Image avatar = new Image(Assets.Sprites.ED, 34, 56, 22, 28);
-			avatar.scale.set(0.5f);
+			avatar.scale.set(0.75f);
 			return avatar;
 		}
 		

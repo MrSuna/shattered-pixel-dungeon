@@ -190,14 +190,17 @@ public class StatusPane extends Component {
 		if (large)  bg.size( 160, bg.height ); //HP bars must be 128px wide atm
 		else        bg.size(hpBarMaxWidth+32, bg.height ); //default max right is 50px health bar + 32
 
-		avatar.x = bg.x - avatar.width / 2f + 15;
-		avatar.y = bg.y - avatar.height / 2f + 16;
+		// Use the rendered dimensions. E.D.'s source frame is 22x28 and is
+		// scaled down; using the unscaled width/height shifts the avatar up
+		// and left in the top-left status pane.
+		avatar.x = bg.x - avatar.width() / 2f + 15;
+		avatar.y = bg.y - avatar.height() / 2f + 16;
 		PixelScene.align(avatar);
 
 		heroInfo.setRect( x, y, heroPaneWidth, large ? 40 : 36 );
 
-		compass.x = avatar.x + avatar.width / 2f - compass.origin.x;
-		compass.y = avatar.y + avatar.height / 2f - compass.origin.y;
+		compass.x = avatar.x + avatar.width() / 2f - compass.origin.x;
+		compass.y = avatar.y + avatar.height() / 2f - compass.origin.y;
 		PixelScene.align(compass);
 
 		if (large) {

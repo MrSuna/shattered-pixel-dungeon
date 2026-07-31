@@ -39,7 +39,7 @@ public class MirrorSprite extends MobSprite {
 		texture( Dungeon.hero != null ? Dungeon.hero.heroClass.spritesheet() : HeroClass.WARRIOR.spritesheet() );
 		updateArmor( 0 );
 		if (Dungeon.hero != null && Dungeon.hero.heroClass == HeroClass.ED){
-			scale.set(0.5f);
+			scale.set(0.75f);
 		}
 		idle();
 	}
@@ -65,7 +65,7 @@ public class MirrorSprite extends MobSprite {
 			for (int row = 0; row < 4; row++){
 				int y = row * 28;
 				film.add(row * 4 + 1, 34, y, 56, y + 28);
-				film.add(row * 4 + 2, 56, y, 78, y + 28);
+				film.add(row * 4 + 2, 78, y, 100, y + 28);
 			}
 
 			idle = new Animation(2, true);

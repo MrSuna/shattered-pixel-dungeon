@@ -24,8 +24,9 @@ public class EDSprite extends HeroSprite {
 
 	public EDSprite(){
 		super();
-		// 22x28 source frames render at the same footprint as a 12x15 hero.
-		scale.set(0.5f);
+		// The source figure is larger than the vanilla 12x15 hero frame. Keep
+		// enough of that silhouette to make E.D. readable in the dungeon.
+		scale.set(0.75f);
 	}
 
 	@Override
@@ -33,10 +34,11 @@ public class EDSprite extends HeroSprite {
 		TextureFilm film = new TextureFilm(texture);
 		for (int row = 0; row < 4; row++){
 			int y = row * 28;
-			// Crop away only the neighbouring spill pixels. The complete body
-			// remains at its original size and is never resampled.
+			// The uploaded contact sheet has complete figures at x=34..56 and
+			// x=78..100. The x=56..78 column is a connected spill from the
+			// neighbouring figure and must never be used as an animation frame.
 			film.add(row * 4 + 1, 34, y, 56, y + 28);
-			film.add(row * 4 + 2, 56, y, 78, y + 28);
+			film.add(row * 4 + 2, 78, y, 100, y + 28);
 		}
 
 		idle = new Animation(2, true);
