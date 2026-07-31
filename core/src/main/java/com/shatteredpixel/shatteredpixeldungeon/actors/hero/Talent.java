@@ -202,7 +202,7 @@ public enum Talent {
 	//Ratmogrify T4
 	RATSISTANCE(215, 4), RATLOMACY(216, 4), RATFORCEMENTS(217, 4),
 
-	//E.D. Broken Crown T3 (永远的像素地牢 mod)
+	//E.D. Broken Crown T3 (永恒的像素地牢 mod)
 	CROWN_OF_THORNS(11, 3), THRONE_ECHO(12, 3), PAINBORN(13, 3),
 	//E.D. Usurper T3
 	GREEDY_VAULT(14, 3), TYRANTS_TOLL(15, 3), BLOOD_TRIBUTE(16, 3);

@@ -1,8 +1,8 @@
-name: Build E.D. Mod APK
+name: Build Eternal Pixel Dungeon APK
 on:
   workflow_dispatch:
   push:
-    branches: [ master ]
+    branches: [ master, 'agent/**' ]
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -19,5 +19,5 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: ED-mod-apk
+          name: eternal-pixel-dungeon-apk
           path: android/build/outputs/apk/debug/*.apk
