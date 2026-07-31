@@ -455,6 +455,8 @@ public enum Icons {
 		switch (cl) {
 			case WARRIOR:
 				return new ItemSprite(ItemSpriteSheet.SEAL);
+			case ED:
+				return new ItemSprite(ItemSpriteSheet.ARTIFACT_ROYAL_TREASURE);
 			case MAGE:
 				//mage's staff normally has 2 pixels extra at the top for particle effects, we chop that off here
 				Image result = new ItemSprite(ItemSpriteSheet.MAGES_STAFF);

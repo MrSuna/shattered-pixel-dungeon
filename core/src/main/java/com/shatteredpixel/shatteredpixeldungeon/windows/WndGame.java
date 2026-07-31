@@ -35,6 +35,7 @@ import com.shatteredpixel.shatteredpixeldungeon.ui.Icons;
 import com.shatteredpixel.shatteredpixeldungeon.ui.RedButton;
 import com.shatteredpixel.shatteredpixeldungeon.ui.Window;
 import com.watabou.noosa.Game;
+import com.watabou.utils.DeviceCompat;
 
 import java.io.IOException;
 
@@ -71,6 +72,18 @@ public class WndGame extends Window {
 				}
 			} );
 			curBtn.icon(Icons.get(Icons.CHALLENGE_COLOR));
+		}
+
+		if (DeviceCompat.isDebug() && Dungeon.hero != null
+				&& Dungeon.hero.heroClass == com.shatteredpixel.shatteredpixeldungeon.actors.hero.HeroClass.ED) {
+			addButton( curBtn = new RedButton( Messages.get(this, "ed_debug") ) {
+				@Override
+				protected void onClick() {
+					hide();
+					GameScene.show(new WndEDDebug());
+				}
+			});
+			curBtn.icon(Icons.get(Icons.PREFS));
 		}
 
 		// Restart

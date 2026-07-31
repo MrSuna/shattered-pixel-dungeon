@@ -46,8 +46,8 @@ public class HeroSprite extends CharSprite {
 	
 	private static TextureFilm tiers;
 	
-	private Animation fly;
-	private Animation read;
+	protected Animation fly;
+	protected Animation read;
 
 	public HeroSprite() {
 		super();
@@ -183,6 +183,11 @@ public class HeroSprite extends CharSprite {
 	}
 	
 	public static Image avatar( HeroClass cl, int armorTier ) {
+		if (cl == HeroClass.ED){
+			Image avatar = new Image(Assets.Sprites.ED, 34, 56, 22, 28);
+			avatar.scale.set(0.5f);
+			return avatar;
+		}
 		
 		RectF patch = tiers().get( armorTier );
 		Image avatar = new Image( cl.spritesheet() );

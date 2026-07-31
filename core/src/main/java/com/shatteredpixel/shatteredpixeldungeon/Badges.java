@@ -938,6 +938,7 @@ public class Badges {
 		Badge badge = null;
 		switch (Dungeon.hero.heroClass) {
 			case WARRIOR:
+			case ED:
 				badge = Badge.MASTERY_WARRIOR;
 				break;
 			case MAGE:

@@ -41,6 +41,14 @@ public class RoyalTreasure extends Artifact {
 		return cap;
 	}
 
+	public void fillForDebug(){
+		level(levelCap);
+		exp = 0;
+		chargeCap = capacity();
+		charge = chargeCap;
+		updateQuickslot();
+	}
+
 	// 苦痛 = 已损失生命比例 (0~1)
 	public static float pain(Hero hero){
 		return 1f - (hero.HP / (float)hero.HT);

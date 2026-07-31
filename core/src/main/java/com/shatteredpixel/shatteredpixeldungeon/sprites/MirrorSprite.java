@@ -38,6 +38,9 @@ public class MirrorSprite extends MobSprite {
 		
 		texture( Dungeon.hero != null ? Dungeon.hero.heroClass.spritesheet() : HeroClass.WARRIOR.spritesheet() );
 		updateArmor( 0 );
+		if (Dungeon.hero != null && Dungeon.hero.heroClass == HeroClass.ED){
+			scale.set(0.5f);
+		}
 		idle();
 	}
 	
@@ -57,6 +60,26 @@ public class MirrorSprite extends MobSprite {
 	}
 	
 	public void updateArmor( int tier ) {
+		if (Dungeon.hero != null && Dungeon.hero.heroClass == HeroClass.ED){
+			TextureFilm film = new TextureFilm(texture);
+			for (int row = 0; row < 4; row++){
+				int y = row * 28;
+				film.add(row * 4 + 1, 34, y, 56, y + 28);
+				film.add(row * 4 + 2, 56, y, 78, y + 28);
+			}
+
+			idle = new Animation(2, true);
+			idle.frames(film, 9, 10, 9, 10);
+			run = new Animation(12, true);
+			run.frames(film, 9, 10, 9, 10);
+			die = new Animation(20, false);
+			die.frames(film, 1);
+			attack = new Animation(12, false);
+			attack.frames(film, 9, 10, 9);
+			idle();
+			return;
+		}
+
 		TextureFilm film = new TextureFilm( HeroSprite.tiers(), tier, FRAME_WIDTH, FRAME_HEIGHT );
 		
 		idle = new Animation( 1, true );
