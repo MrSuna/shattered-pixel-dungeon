@@ -52,6 +52,16 @@ public class RoyalTreasure extends Artifact {
 		updateQuickslot();
 	}
 
+	/** Spends all stored plunder and returns the amount that was consumed. */
+	public int spendAllPlunder(){
+		int spent = (int)charge;
+		if (spent > 0){
+			charge = 0;
+			updateQuickslot();
+		}
+		return spent;
+	}
+
 	/** Restores a small amount of plunder carried forward by E.D.'s death relic. */
 	public static int recoverFromDeathRelic(Hero hero, int amount){
 		if (hero == null || amount <= 0) return 0;

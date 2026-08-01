@@ -32,14 +32,12 @@ public class NothingAtAll extends ArmorAbility {
 	@Override
 	protected void activate(ClassArmor armor, Hero hero, Integer target) {
 		RoyalTreasure treasure = hero.belongings.getItem(RoyalTreasure.class);
-		if (treasure == null || treasure.charge < 1) {
+		int spent = treasure == null ? 0 : treasure.spendAllPlunder();
+		if (spent < 1) {
 			GLog.w(Messages.get(this, "no_treasure"));
 			return;
 		}
 
-		int spent = (int)treasure.charge;
-		treasure.charge = 0;
-		treasure.updateQuickslot();
 		float duration = 3f + spent/2f + hero.pointsInTalent(Talent.SUSTAINED_RETRIBUTION);
 		Buff.prolong(hero, Nothingness.class, duration);
 		if (hero.pointsInTalent(Talent.SHRUG_IT_OFF) > 0) {
