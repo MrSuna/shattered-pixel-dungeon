@@ -10,11 +10,14 @@ import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Char;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Barrier;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Buff;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.FlavourBuff;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Talent;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSpriteSheet;
+import com.shatteredpixel.shatteredpixeldungeon.ui.BuffIndicator;
 import com.shatteredpixel.shatteredpixeldungeon.utils.GLog;
+import com.watabou.noosa.Image;
 
 public class RoyalTreasure extends Artifact {
 
@@ -79,6 +82,9 @@ public class RoyalTreasure extends Artifact {
 		RoyalTreasure treasure = hero.belongings.getItem(RoyalTreasure.class);
 		if (treasure == null || !treasure.isEquipped(hero)) return;
 
+		boolean debtCollected = enemy.buff(DebtMark.class) != null;
+		if (debtCollected) Buff.detach(enemy, DebtMark.class);
+
 		treasure.chargeCap = treasure.capacity();
 		boolean stored = false;
 		if (treasure.charge < treasure.chargeCap){
@@ -103,6 +109,33 @@ public class RoyalTreasure extends Artifact {
 		// Usurper only collects tax when the vault can actually accept the plunder.
 		if (stored && hero.hasTalent(Talent.TYRANTS_TOLL)){
 			Buff.affect(hero, Barrier.class).incShield(2*hero.pointsInTalent(Talent.TYRANTS_TOLL));
+		}
+
+		// A marked kill pays the king twice: the normal plunder and a small barrier.
+		if (debtCollected){
+			Buff.affect(hero, Barrier.class).incShield(2 + hero.pointsInTalent(Talent.DOUBLE_JUMP));
+		}
+	}
+
+	public static class DebtMark extends FlavourBuff {
+		{
+			type = buffType.NEGATIVE;
+			announced = true;
+		}
+
+		@Override
+		public int icon() {
+			return BuffIndicator.MARK;
+		}
+
+		@Override
+		public void tintIcon(Image icon) {
+			icon.hardlight(1f, 0.15f, 0.1f);
+		}
+
+		@Override
+		public String desc() {
+			return Messages.get(this, "desc", (int)Math.ceil(visualcooldown()));
 		}
 	}
 

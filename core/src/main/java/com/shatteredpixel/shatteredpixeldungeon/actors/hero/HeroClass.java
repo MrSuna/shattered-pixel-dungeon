@@ -34,6 +34,9 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.hero.abilities.cleric.Tri
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.abilities.duelist.Challenge;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.abilities.duelist.ElementalStrike;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.abilities.duelist.Feint;
+import com.shatteredpixel.shatteredpixeldungeon.actors.hero.abilities.ed.BloodDebtDecree;
+import com.shatteredpixel.shatteredpixeldungeon.actors.hero.abilities.ed.EmptyThrone;
+import com.shatteredpixel.shatteredpixeldungeon.actors.hero.abilities.ed.NothingAtAll;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.abilities.huntress.NaturesPower;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.abilities.huntress.SpectralBlades;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.abilities.huntress.SpiritHawk;
@@ -298,8 +301,10 @@ public enum HeroClass {
 
 	public ArmorAbility[] armorAbilities(){
 		switch (this) {
-			case WARRIOR: case ED: default:
+			case WARRIOR: default:
 				return new ArmorAbility[]{new HeroicLeap(), new Shockwave(), new Endure()};
+			case ED:
+				return new ArmorAbility[]{new BloodDebtDecree(), new EmptyThrone(), new NothingAtAll()};
 			case MAGE:
 				return new ArmorAbility[]{new ElementalBlast(), new WildMagic(), new WarpBeacon()};
 			case ROGUE:

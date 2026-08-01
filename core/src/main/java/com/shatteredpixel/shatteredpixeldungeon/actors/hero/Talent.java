@@ -467,8 +467,10 @@ public enum Talent {
 					return 122;
 				case DUELIST:
 					return 154;
-				case CLERIC:
+			case CLERIC:
 					return 186;
+				case ED:
+					return 26;
 			}
 		} else if (usesEDPresentation()) {
 			switch (this){
@@ -505,6 +507,16 @@ public enum Talent {
 			case IRON_STOMACH:
 			case STRONGMAN:
 			case DEADLY_FOLLOWUP:
+			case BODY_SLAM:
+			case IMPACT_WAVE:
+			case DOUBLE_JUMP:
+			case EXPANDING_WAVE:
+			case STRIKING_WAVE:
+			case SHOCK_FORCE:
+			case SUSTAINED_RETRIBUTION:
+			case SHRUG_IT_OFF:
+			case EVEN_THE_ODDS:
+			case HEROIC_ENERGY:
 				return true;
 			default:
 				return false;
