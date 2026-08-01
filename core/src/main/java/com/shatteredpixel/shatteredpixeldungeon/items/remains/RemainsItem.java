@@ -82,6 +82,8 @@ public abstract class RemainsItem extends Item {
 		switch (cls){
 			case WARRIOR: default:
 				return new SealShard();
+			case ED:
+				return new DeathRelic();
 			case MAGE:
 				return new BrokenStaff();
 			case ROGUE:

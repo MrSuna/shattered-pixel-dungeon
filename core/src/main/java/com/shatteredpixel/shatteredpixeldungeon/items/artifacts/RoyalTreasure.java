@@ -52,6 +52,21 @@ public class RoyalTreasure extends Artifact {
 		updateQuickslot();
 	}
 
+	/** Restores a small amount of plunder carried forward by E.D.'s death relic. */
+	public static int recoverFromDeathRelic(Hero hero, int amount){
+		if (hero == null || amount <= 0) return 0;
+		RoyalTreasure treasure = hero.belongings.getItem(RoyalTreasure.class);
+		if (treasure == null || !treasure.isEquipped(hero)) return 0;
+
+		treasure.chargeCap = treasure.capacity();
+		int recovered = Math.min(amount, Math.max(0, treasure.chargeCap - treasure.charge));
+		if (recovered > 0){
+			treasure.charge += recovered;
+			treasure.updateQuickslot();
+		}
+		return recovered;
+	}
+
 	// 苦痛 = 已损失生命比例 (0~1)
 	public static float pain(Hero hero){
 		return 1f - (hero.HP / (float)hero.HT);

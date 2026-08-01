@@ -71,6 +71,7 @@ public class Badges {
 		MASTERY_HUNTRESS,
 		MASTERY_DUELIST,
 		MASTERY_CLERIC,
+		MASTERY_ED                  (112),
 		FOUND_RATMOGRIFY,
 
 		//bronze
@@ -938,8 +939,10 @@ public class Badges {
 		Badge badge = null;
 		switch (Dungeon.hero.heroClass) {
 			case WARRIOR:
-			case ED:
 				badge = Badge.MASTERY_WARRIOR;
+				break;
+			case ED:
+				badge = Badge.MASTERY_ED;
 				break;
 			case MAGE:
 				badge = Badge.MASTERY_MAGE;

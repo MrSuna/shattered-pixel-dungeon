@@ -165,8 +165,9 @@ public enum HeroClass {
 	public Badges.Badge masteryBadge() {
 		switch (this) {
 			case WARRIOR:
-			case ED:
 				return Badges.Badge.MASTERY_WARRIOR;
+			case ED:
+				return Badges.Badge.MASTERY_ED;
 			case MAGE:
 				return Badges.Badge.MASTERY_MAGE;
 			case ROGUE:

@@ -16,6 +16,9 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.HeroSubClass;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Talent;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.abilities.ArmorAbility;
+import com.shatteredpixel.shatteredpixeldungeon.actors.hero.abilities.warrior.Endure;
+import com.shatteredpixel.shatteredpixeldungeon.actors.hero.abilities.warrior.HeroicLeap;
+import com.shatteredpixel.shatteredpixeldungeon.actors.hero.abilities.warrior.Shockwave;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.HeroClass;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.items.armor.Armor;
@@ -41,10 +44,13 @@ public class WndEDDebug extends WndOptions {
 	private static final int BLOOD_DEBT = 2;
 	private static final int EMPTY_THRONE = 3;
 	private static final int NOTHING_AT_ALL = 4;
-	private static final int HALF_HEALTH = 5;
-	private static final int FILL_TREASURE = 6;
-	private static final int RESTORE = 7;
-	private static final int SAVE_TEST = 8;
+	private static final int WARRIOR_HEROIC_LEAP = 5;
+	private static final int WARRIOR_SHOCKWAVE = 6;
+	private static final int WARRIOR_ENDURE = 7;
+	private static final int HALF_HEALTH = 8;
+	private static final int FILL_TREASURE = 9;
+	private static final int RESTORE = 10;
+	private static final int SAVE_TEST = 11;
 
 	public WndEDDebug() {
 		super(
@@ -55,6 +61,9 @@ public class WndEDDebug extends WndOptions {
 				Messages.get(WndEDDebug.class, "blood_debt"),
 				Messages.get(WndEDDebug.class, "empty_throne"),
 				Messages.get(WndEDDebug.class, "nothing_at_all"),
+				Messages.get(WndEDDebug.class, "warrior_heroic_leap"),
+				Messages.get(WndEDDebug.class, "warrior_shockwave"),
+				Messages.get(WndEDDebug.class, "warrior_endure"),
 				Messages.get(WndEDDebug.class, "half_health"),
 				Messages.get(WndEDDebug.class, "fill_treasure"),
 				Messages.get(WndEDDebug.class, "restore"),
@@ -82,6 +91,15 @@ public class WndEDDebug extends WndOptions {
 				break;
 			case NOTHING_AT_ALL:
 				prepareArmorAbility(hero, HeroClass.ED.armorAbilities()[2]);
+				break;
+			case WARRIOR_HEROIC_LEAP:
+				prepareArmorAbility(hero, new HeroicLeap());
+				break;
+			case WARRIOR_SHOCKWAVE:
+				prepareArmorAbility(hero, new Shockwave());
+				break;
+			case WARRIOR_ENDURE:
+				prepareArmorAbility(hero, new Endure());
 				break;
 			case HALF_HEALTH:
 				hero.HP = Math.max(1, hero.HT / 2);
