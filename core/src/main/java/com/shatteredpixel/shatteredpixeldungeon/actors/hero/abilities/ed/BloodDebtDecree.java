@@ -54,8 +54,7 @@ public class BloodDebtDecree extends ArmorAbility {
 		armor.charge -= chargeUse(hero);
 		Item.updateQuickslot();
 
-		int markTurns = 8 + 2*hero.pointsInTalent(Talent.BODY_SLAM)
-				+ hero.pointsInTalent(Talent.STRIKING_WAVE);
+		int markTurns = 8 + 2*hero.pointsInTalent(Talent.BODY_SLAM);
 		Buff.prolong(victim, RoyalTreasure.DebtMark.class, markTurns);
 		Buff.prolong(victim, Vulnerable.class, 4f + hero.pointsInTalent(Talent.IMPACT_WAVE));
 		if (hero.pointsInTalent(Talent.IMPACT_WAVE) >= 2) {

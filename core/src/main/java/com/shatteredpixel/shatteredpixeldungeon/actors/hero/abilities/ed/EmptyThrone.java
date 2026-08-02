@@ -31,12 +31,7 @@ public class EmptyThrone extends ArmorAbility {
 
 	@Override
 	protected void activate(ClassArmor armor, Hero hero, Integer target) {
-		Buff.prolong(hero, ThroneField.class, 8f + 2f*hero.pointsInTalent(Talent.EXPANDING_WAVE));
-		if (hero.pointsInTalent(Talent.SHRUG_IT_OFF) > 0) {
-			com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Barrier barrier =
-					Buff.affect(hero, com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Barrier.class);
-			barrier.incShield(hero.pointsInTalent(Talent.SHRUG_IT_OFF));
-		}
+		Buff.prolong(hero, ThroneField.class, 8f);
 		hero.sprite.operate(hero.pos);
 		armor.charge -= chargeUse(hero);
 		Item.updateQuickslot();
@@ -69,10 +64,11 @@ public class EmptyThrone extends ArmorAbility {
 						Buff.prolong(ch, RoyalTreasure.DebtMark.class,
 								2f + hero.pointsInTalent(Talent.STRIKING_WAVE));
 						Buff.prolong(ch, Vulnerable.class, 2f);
-						if (hero.pointsInTalent(Talent.SHOCK_FORCE) >= 3) {
-							Buff.prolong(ch, Paralysis.class, 1f);
-						} else if (hero.pointsInTalent(Talent.SHOCK_FORCE) > 0) {
-							Buff.prolong(ch, Cripple.class, 2f);
+						int shockForce = hero.pointsInTalent(Talent.SHOCK_FORCE);
+						if (shockForce >= 3) {
+							Buff.prolong(ch, Paralysis.class, shockForce >= 4 ? 2f : 1f);
+						} else if (shockForce > 0) {
+							Buff.prolong(ch, Cripple.class, shockForce >= 2 ? 3f : 2f);
 						}
 					}
 				}
